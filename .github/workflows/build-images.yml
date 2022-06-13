@@ -35,8 +35,7 @@ jobs:
         run: make etherlab
 
       - name: Build sdcard.img for etherlab
-        # This requires root privileges
-        run: sudo scripts/build_sdimage.sh
+        run: scripts/build_sdimage.sh
 
       - name: Archive etherlab image
         uses: actions/upload-artifact@v3
@@ -47,7 +46,7 @@ jobs:
           retention-days: 2
 
       - name: Clean up etherlab artifacts
-        run: sudo rm -fr ethercat-hg/ sdcard.img
+        run: rm -fr ethercat-hg/ sdcard.img
 
       # XXX: prepare_acontis.sh fails on start up
       #      See https://github.com/ntd/CX9020/runs/6859336784
@@ -59,8 +58,7 @@ jobs:
       #  run: make acontis
 
       #- name: Build sdcard.img for Acontis
-      #  # This requires root privileges
-      #  run: sudo scripts/build_sdimage.sh
+      #  run: scripts/build_sdimage.sh
 
       #- name: Archive acontis image
       #  uses: actions/upload-artifact@v3

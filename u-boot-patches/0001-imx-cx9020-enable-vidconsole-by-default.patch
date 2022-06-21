@@ -1,0 +1,38 @@
+From dd7e7feb4430accb73a140c9539253ec1e11276b Mon Sep 17 00:00:00 2001
+From: Steffen Dirkwinkel <s.dirkwinkel@beckhoff.com>
+Date: Wed, 23 Oct 2019 07:40:42 +0200
+Subject: [PATCH] imx: cx9020: enable vidconsole by default
+
+Acked-by: Patrick Bruenn <p.bruenn@beckhoff.com>
+Signed-off-by: Steffen Dirkwinkel <s.dirkwinkel@beckhoff.com>
+---
+ configs/mx53cx9020_defconfig | 1 +
+ include/configs/mx53cx9020.h | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/configs/mx53cx9020_defconfig b/configs/mx53cx9020_defconfig
+index dee7c37913..e1126c53e1 100644
+--- a/configs/mx53cx9020_defconfig
++++ b/configs/mx53cx9020_defconfig
+@@ -48,3 +48,4 @@ CONFIG_MXC_UART=y
+ CONFIG_DM_VIDEO=y
+ CONFIG_VIDEO_BPP16=y
+ CONFIG_VIDEO_IPUV3=y
++CONFIG_SYS_WHITE_ON_BLACK=y
+diff --git a/include/configs/mx53cx9020.h b/include/configs/mx53cx9020.h
+index cae49e8793..a9dc73dd2f 100644
+--- a/include/configs/mx53cx9020.h
++++ b/include/configs/mx53cx9020.h
+@@ -53,6 +53,9 @@
+ 	"pxefile_addr_r=0x73000000\0" \
+ 	"ramdisk_addr_r=0x72000000\0" \
+ 	"console=ttymxc1,115200\0" \
++	"stdin=serial\0" \
++	"stdout=serial,vidconsole\0" \
++	"stderr=serial,vidconsole\0" \
+ 	"uenv=/boot/uEnv.txt\0" \
+ 	"optargs=\0" \
+ 	"cmdline=\0" \
+-- 
+GitLab
+

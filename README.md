@@ -58,6 +58,10 @@ make etherlab
 scripts/install.sh --skip-partitioning <SDCARD> /tmp/rootfs
 ```
 
+### Working around broken EDID panels
+
+If you get a flashing or completely blank panel, double check it has no broken EDID support. Check [this issue](https://github.com/Beckhoff/CX9020/issues/19) for an example of the nightmare you are going to encounter.
+
 ## Usage
 
 The standard login on first boot:

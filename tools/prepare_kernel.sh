@@ -25,7 +25,7 @@ pushd ${REPO}
 git checkout origin/${RT_VERSION} -b dev-${RT_VERSION}
 
 # apply cx9020 patches
-git am -3  ../kernel-patches/000*
+[ -d ../kernel-patches ] && git am -3  ../kernel-patches/000*
 
 # apply prepared config
 cp -a ../kernel-patches/config-CX9020 .config

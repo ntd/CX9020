@@ -1,5 +1,7 @@
 # CX9020
 
+Unofficial fork for building the image using docker.
+
 This repository provides Scripts and Patches to build a basic Linux (Debian) System for a [Beckhoff CX9020 Controller](https://www.beckhoff.com/default.asp?embedded_pc/cx9020.htm).
 It only works with devices which are ordered with a special ordering number (CX9020-0100) which ensures that the device boots directly from the microSD card instead of using the internal bootloader.
 Please make sure to follow the steps below to create your microSD card.
@@ -8,7 +10,7 @@ Please make sure to follow the steps below to create your microSD card.
 ```
 # Get the repository
 #====================
-git clone https://github.com/Beckhoff/CX9020.git
+git clone -b docker-support https://github.com/ntd/CX9020.git
 cd CX9020
 
 # Get and patch the u-boot sources

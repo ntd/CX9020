@@ -29,6 +29,7 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	make \
 	mercurial \
 	multistrap \
+	parted \
 	python-coverage \
 	python-dev \
 	python-pip \
@@ -37,6 +38,7 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	qemu \
 	qemu-user-static \
 	swig \
+	udev \
 	wget \
 	xz-utils
 

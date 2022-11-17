@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm 4.19.246 Kernel Configuration
+# Linux/arm 4.19.265 Kernel Configuration
 #
 
 #
@@ -1410,6 +1410,7 @@ CONFIG_HW_RANDOM_IMX_RNGC=m
 # CONFIG_RAW_DRIVER is not set
 # CONFIG_TCG_TPM is not set
 # CONFIG_XILLYBUS is not set
+CONFIG_RANDOM_TRUST_BOOTLOADER=y
 
 #
 # I2C support
@@ -3493,7 +3494,6 @@ CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED=y
 # CONFIG_ARM_PTDUMP_DEBUGFS is not set
 # CONFIG_DEBUG_WX is not set
 CONFIG_UNWINDER_FRAME_POINTER=y
-# CONFIG_UNWINDER_ARM is not set
 CONFIG_OLD_MCOUNT=y
 # CONFIG_DEBUG_USER is not set
 # CONFIG_DEBUG_LL is not set

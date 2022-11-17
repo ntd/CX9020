@@ -13,51 +13,45 @@ Please make sure to follow the steps below to create your microSD card.
 git clone -b docker-support https://github.com/ntd/CX9020.git
 cd CX9020
 
-# Get and patch the u-boot sources
-#=================================
-tools/prepare_uboot.sh v2019.10
-
-# Get and patch a rt kernel
-#==========================
-tools/prepare_kernel.sh v4.19-rt
-
-# Partition the SD card
-# WARNING! Use the correct device (e.g. `/dev/sdc`) instead of `<SDCARD>`
-#========================================================================
-scripts/10_install_mbr.sh <SDCARD>
-
-# Create an Ubuntu 18.04 LTS image ready for building
-#====================================================
+# Create the building OS image
+#=============================
 docker build -t cx9020 .
 
-# Start the container
-#====================
-docker run --privileged --mount type=bind,src=$(pwd),dst=/root/CX9020 -itw /root/CX9020/ --device=<SDCARD>:<SDCARD> cx9020 /bin/bash
+# Start the building OS container
+#================================
+docker run --privileged --mount type=bind,src=$(pwd),dst=/root/CX9020 --mount type=bind,src=/dev,dst=/devhost -itw /root/CX9020/ cx9020 /bin/bash
 
-# NOW YOU ARE INSIDE THE CONTAINER
-# Note: all files generated from the container are owned by root
+# NOW YOU ARE INSIDE THE BUILDING OS CONTAINER
+# Note: all files generated here are owned by root in the host OS
+
+# Optimize `git clone` downloading only the last commit
+#======================================================
+export GIT_CLONE_ARGS='--depth 1'
 
 # Build u-boot
-#===================================
+#=============
+tools/prepare_uboot.sh v2019.10
 make uboot
 
-# Configure and build the kernel
-#===============================
+# Build the kernel
+#=================
+tools/prepare_kernel.sh v4.19-rt
 make kernel
-
-# Integrate acontis kernel extension atemsys from EC-Master SDK for emllCCAT support (optional)
-#==============================================================================================
-tools/prepare_acontis.sh
-make acontis
 
 # Build the etherlab master stack (optional)
 #===========================================
 tools/prepare_etherlab.sh
 make etherlab
 
+# Integrate acontis kernel extension atemsys from EC-Master SDK for emllCCAT support (optional)
+#==============================================================================================
+tools/prepare_acontis.sh
+make acontis
+
 # Prepare the SD card
-#====================
-scripts/install.sh --skip-partitioning <SDCARD> /tmp/rootfs
+# WARNING: use the correct device name instead of `<SDCARD>` (e.g. `/devhost/sdc`)
+#=================================================================================
+scripts/install.sh /devhost/<SDCARD> /tmp/rootfs
 ```
 
 ### Working around broken EDID panels

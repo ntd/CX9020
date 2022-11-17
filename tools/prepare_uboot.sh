@@ -9,7 +9,12 @@ fi
 
 VERSION=$1
 
-git clone http://git.denx.de/u-boot.git ${GIT_CLONE_ARGS} ${UBOOT_CLONE_ARGS}
+git clone -b ${VERSION} http://git.denx.de/u-boot.git ${GIT_CLONE_ARGS} ${UBOOT_CLONE_ARGS}
 pushd u-boot/
-git checkout ${VERSION} -b dev-${VERSION}
-[ -d ../u-boot-patches ] && git am -3 ../u-boot-patches/000*
+git checkout -b dev-${VERSION}
+
+# Apply custom patches, if any
+for f in ../u-boot-patches/000*; do
+	echo "Applying '$f'"
+	patch -p1 -i "$f"
+done

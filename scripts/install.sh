@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -o nounset
 
 if [ "$1" = '--skip-partitioning' ]; then
 	shift
@@ -9,6 +8,8 @@ if [ "$1" = '--skip-partitioning' ]; then
 else
 	partition=yes
 fi
+
+set -o nounset
 
 if [ $# -ne 2 ]; then
 	echo -e "Usage:\n $0 [--skip-partitioning] <disk> <mountpoint>\n\nexample:\n $0 /dev/sdc /tmp/rootfs\n\n"

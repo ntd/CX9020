@@ -14,6 +14,7 @@ pushd u-boot/
 git checkout -b dev-${VERSION}
 
 # Apply custom patches, if any
+shopt -s nullglob
 for f in ../u-boot-patches/000*; do
 	echo "Applying '$f'"
 	patch -p1 -i "$f"

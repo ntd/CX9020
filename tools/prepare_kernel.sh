@@ -24,6 +24,7 @@ pushd ${REPO}
 git checkout -b dev-${RT_VERSION}
 
 # Apply custom patches, if any
+shopt -s nullglob
 for f in ../kernel-patches/000*; do
 	echo "Applying '$f'"
 	patch -p1 -i "$f"

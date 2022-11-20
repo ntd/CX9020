@@ -35,7 +35,7 @@ make uboot
 
 # Build the kernel
 #=================
-tools/prepare_kernel.sh v4.19-rt
+tools/prepare_kernel.sh v5.10-rt
 make kernel
 
 # Build the etherlab master stack (optional)

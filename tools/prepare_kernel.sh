@@ -27,7 +27,7 @@ git checkout -b dev-${RT_VERSION}
 shopt -s nullglob
 for f in ../kernel-patches/000*; do
 	echo "Applying '$f'"
-	patch -p1 -i "$f"
+	patch -tNp1 -i "$f"
 done
 
 # Prepared kernel configuration

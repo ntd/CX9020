@@ -17,5 +17,5 @@ git checkout -b dev-${VERSION}
 shopt -s nullglob
 for f in ../u-boot-patches/000*; do
 	echo "Applying '$f'"
-	patch -p1 -i "$f"
+	patch -tNp1 -i "$f"
 done

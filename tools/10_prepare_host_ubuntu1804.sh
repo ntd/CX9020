@@ -27,9 +27,9 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	libssl-dev \
 	libtool \
 	make \
-	mercurial \
 	multistrap \
 	parted \
+	pkgconf \
 	python-coverage \
 	python-dev \
 	python-pip \

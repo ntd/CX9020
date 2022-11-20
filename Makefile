@@ -1,5 +1,5 @@
 ACONTIS_ECMASTER=acontis/EC-Master
-ETHERLAB=ethercat-hg
+ETHERLAB=ethercat
 KERNEL=kernel
 UBOOT=u-boot
 CCAT=ccat
@@ -13,10 +13,14 @@ acontis:
 
 etherlab: CROSS_PREFIX=arm-linux-gnueabihf-
 etherlab:
-	cd ${ETHERLAB} && ./configure --host=arm-linux-gnueabihf --with-linux-dir=`pwd`/../${KERNEL} --disable-generic --disable-8139too --disable-eoe --enable-ccat_netdev
+	cd ${ETHERLAB} && ./configure \
+		--host=arm-linux-gnueabihf --with-linux-dir=`pwd`/../${KERNEL} \
+		--disable-generic --disable-8139too --disable-eoe --enable-ccat \
+		--prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin --libdir=/usr/lib \
+		--enable-tool --enable-userlib \
+		--disable-initd --with-systemdsystemunitdir=/lib/systemd/system
 	cd ${ETHERLAB} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} clean
-	cd ${ETHERLAB} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} ${MAKE_JOBS}
-	cd ${ETHERLAB} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} ${MAKE_JOBS} modules
+	cd ${ETHERLAB} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} ${MAKE_JOBS} all modules
 	cd tests/etherlab && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} ${MAKE_JOBS}
 
 uboot-tests:

@@ -1,9 +1,23 @@
 #!/bin/bash
 
-# get the etherlab sources
-hg clone http://hg.code.sf.net/p/etherlabmaster/code ethercat-hg
+set -e
 
-pushd ethercat-hg/
-hg update stable-1.5
-hg import ../ccat/etherlab-patches/000*
+if [ $# -ne 1 ]; then
+	echo -e "Usage:\n $0 <branch>\n\nexample:\n $0 stable-1.5"
+	exit 64
+fi
+
+BRANCH=$1
+
+git clone -b ${BRANCH} https://gitlab.com/etherlab.org/ethercat.git ${GIT_CLONE_ARGS} ${ETHERLAB_CLONE_ARGS}
+pushd ethercat/
+git checkout -b dev-${BRANCH}
+
+# Apply custom patches, if any
+shopt -s nullglob
+for f in ../ethercat-patches/000*; do
+	echo "Applying '$f'"
+	patch -Np1 -i "$f"
+done
+
 ./bootstrap

@@ -1,0 +1,42 @@
+From e30a39f36edcbc814b4e54c805346ed7cd8c4a46 Mon Sep 17 00:00:00 2001
+From: Nicola Fontana <ntd@entidi.it>
+Date: Mon, 1 Nov 2021 20:17:26 +0100
+Subject: [PATCH] Fix #19: directly include soe_error_codes into SoeCommand.cpp
+
+Avoid having to rebuild conflicting master/soe_errors.c objects. Inside
+the `tool` folder, the `soe_error_codes` array is used only by
+SoeCommand, so this should not create further problems.
+---
+ tool/Makefile.am    | 1 -
+ tool/SoeCommand.cpp | 3 +--
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/tool/Makefile.am b/tool/Makefile.am
+index 5961aabf..2fe10075 100644
+--- a/tool/Makefile.am
++++ b/tool/Makefile.am
+@@ -36,7 +36,6 @@ EXTRA_DIST =
+ bin_PROGRAMS = ethercat
+ 
+ ethercat_SOURCES = \
+-	../master/soe_errors.c \
+ 	Command.cpp \
+ 	CommandAlias.cpp \
+ 	CommandCrc.cpp \
+diff --git a/tool/SoeCommand.cpp b/tool/SoeCommand.cpp
+index 8b8c061e..536ae260 100644
+--- a/tool/SoeCommand.cpp
++++ b/tool/SoeCommand.cpp
+@@ -31,8 +31,7 @@
+ using namespace std;
+ 
+ #include "SoeCommand.h"
+-
+-extern const ec_code_msg_t soe_error_codes[];
++#include "../master/soe_errors.c"
+ 
+ /*****************************************************************************/
+ 
+-- 
+GitLab
+

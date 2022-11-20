@@ -17,9 +17,9 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	kmod \
 	libssl-dev \
 	libtool \
-	mercurial \
 	multistrap \
 	parted \
+	pkgconf \
 	python3-pip \
 	qemu-user-static \
 	udev \

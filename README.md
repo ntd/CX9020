@@ -40,7 +40,7 @@ make kernel
 
 # Build the etherlab master stack (optional)
 #===========================================
-tools/prepare_etherlab.sh
+tools/prepare_etherlab.sh stable-1.5
 make etherlab
 
 # Integrate acontis kernel extension atemsys from EC-Master SDK for emllCCAT support (optional)

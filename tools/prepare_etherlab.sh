@@ -17,7 +17,7 @@ git checkout -b dev-${BRANCH}
 shopt -s nullglob
 for f in ../ethercat-patches/000*; do
 	echo "Applying '$f'"
-	patch -Np1 -i "$f"
+	patch -tNp1 -i "$f"
 done
 
 ./bootstrap

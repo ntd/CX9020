@@ -11,6 +11,7 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	bc \
 	binfmt-support \
 	bison \
+	bsdmainutils \
 	device-tree-compiler \
 	flex \
 	gcc-arm-embedded \

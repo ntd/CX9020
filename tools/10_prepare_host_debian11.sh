@@ -8,6 +8,7 @@ sudo apt-get install --no-install-recommends -o Dpkg::Options::="--force-confold
 	bc \
 	binfmt-support \
 	bison \
+	bsdmainutils \
 	build-essential \
 	crossbuild-essential-armhf \
 	fdisk \
